@@ -23,6 +23,24 @@ Create a function named urlDecode that will receive a URL encoded string, and re
 
 const urlDecode = function (text) {
   // Put your solution here
+  let properties = text.split("&")
+  let object = {}
+  for(let property of properties) {
+    let keyValuePair = property.split("=")
+    
+    let valueArray = [...keyValuePair[1]]
+    while(true) {
+      let indexOfPercent = valueArray.indexOf("%")
+      if(indexOfPercent >= 0) {
+        valueArray.splice(indexOfPercent, 3, " ")
+      } else {
+        break
+      }
+    }
+
+    object[keyValuePair[0]] = valueArray.join("")
+  }
+  return object
 };
 
 console.log(urlDecode("duck=rubber")); //{duck: "rubber"}
