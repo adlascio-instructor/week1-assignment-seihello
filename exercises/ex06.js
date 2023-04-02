@@ -21,6 +21,38 @@ Note: There may be multiple available spots for a particular vehicle. It does no
 
 const whereCanIPark = function (spots, vehicle) {
   // Code here!
+  let availableSpot = [-1, -1]
+  let found = false
+  spots.forEach((row, rowIndex) => {
+    row.forEach((spot, columnIndex) => {
+      if(!found) {
+        if(vehicle === "regular") {
+          if(spot === "R") {
+            availableSpot = [columnIndex, rowIndex]
+            found = true
+          }
+        }
+        else if(vehicle === "small") {
+          if(spot === "R" || spot === "S") {
+            availableSpot = [columnIndex, rowIndex]
+            found = true
+          }
+        }
+        else {
+          if(spot === "R" || spot === "S" || spot === "M") {
+            availableSpot = [columnIndex, rowIndex]
+            found = true
+          }
+        }
+      }
+    })
+  })
+
+  if(found) {
+    return availableSpot
+  } else {
+    return false
+  }
 };
 
 console.log(
