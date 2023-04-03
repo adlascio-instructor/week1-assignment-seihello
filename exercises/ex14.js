@@ -33,7 +33,7 @@ const calculateChange = function (total, cash) {
   currency.forEach((element, index) => {
     let num = Math.floor(diff / element[1])
     if(num > 0) {
-      change[element[0]] = num
+      change = {...change, [element[0]]:num}
     }
     diff -= element[1] * num
   })
