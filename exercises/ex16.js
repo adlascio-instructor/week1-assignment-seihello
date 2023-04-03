@@ -15,8 +15,73 @@ For more information on casing styles, read Wikipedia's Special Case Styles for 
 
 */
 
+const convert = function(input, caze) {
+  if(caze === "upper") input = input.toUpperCase()
+  else if(caze === "lower") input = input.toLowerCase()
+  else if(caze === "snake") input = input.replace(/\s/g, "_")
+  else if(caze === "kebab") input = input.replace(/\s/g, "-")
+  else if(caze === "camel" || caze === "pascal") {
+    input = [...input]
+    while(true) {
+      let spaceIndex = input.indexOf(" ")
+      if(spaceIndex === -1) {
+        break
+      } else {
+        input[spaceIndex+1] = input[spaceIndex+1].toUpperCase()
+        input.splice(spaceIndex, 1)
+      }
+    }
+    if(caze === "pascal") {
+      input[0] = input[0].toUpperCase()
+    }
+    input = input.join("")
+  }
+  else if(caze === "title" || caze === "vowel" || caze === "consonant") {
+    input = [...input]
+    let upperIndexList = []
+    if(caze === "title") {
+      for(let index in input) {
+        if(+index === 0) {
+          upperIndexList.push(0)
+        }
+        else {
+          if(input[+index-1] === " ") {
+            upperIndexList.push(index)
+          }
+        } 
+      }
+    } else if(caze === "vowel") {
+      input.forEach((chara, index) => {
+        if(chara === "a" || chara === "e" || chara === "i" || chara === "o" || chara === "u") {
+          upperIndexList.push(index)
+        }
+      })
+    } else if(caze === "consonant") {
+      input.forEach((chara, index) => {
+        if(chara != "a" && chara != "e" && chara != "i" && chara != "o" && chara != "u") {
+          upperIndexList.push(index)
+        }
+      })
+    }
+    for(let upperIndex of upperIndexList) {
+      input[upperIndex] = input[upperIndex].toUpperCase()
+    }
+    input = input.join("")
+  }
+  return input
+}
+
 const makeCaze = function (input, caze) {
   // Put your solution here
+  if(typeof(caze) == "string") {
+    input = convert(input, caze)
+  }
+  else {
+    for(let cazeItem of caze) {
+      input = convert(input, cazeItem)
+    }
+  }
+  return input
 };
 
 console.log(makeCaze("this is a string", "camel")); // thisIsAString
