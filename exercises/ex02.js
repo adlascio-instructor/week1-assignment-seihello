@@ -16,14 +16,10 @@ const conditionalSum = function (values, condition) {
     }
   })
 
-  if(filteredValues.length > 0) {
-    const sum = filteredValues.reduce(function(accumulator, currentValue) {
-      return accumulator + currentValue
-    })
-    return sum
-  } else {
-    return 0
-  }
+  const sum = filteredValues.reduce(function(accumulator, currentValue) {
+    return accumulator + currentValue
+  }, 0)
+  return sum
 };
 
 console.log(conditionalSum([1, 2, 3, 4, 5], "even")); // 6
