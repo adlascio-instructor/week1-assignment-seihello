@@ -95,3 +95,5 @@ let blackQueen = [5, 5];
 let generatedBoard = generateBoard(whiteQueen, blackQueen);
 console.log(generatedBoard);
 console.log(queenThreat(generatedBoard));
+
+module.exports = { generateBoard, queenThreat };
