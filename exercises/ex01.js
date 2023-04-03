@@ -7,8 +7,8 @@ Create a function named sumLargestNumbers that will receive an array of numbers 
 */
 
 const sumLargestNumbers = function (data) {
-  let largest = Number.MIN_SAFE_INTEGER
-  let secondLargest = Number.MIN_SAFE_INTEGER
+  let largest = Number.NEGATIVE_INFINITY
+  let secondLargest = Number.NEGATIVE_INFINITY
   data.forEach(element => {
     if(element > largest) {
       secondLargest = largest
