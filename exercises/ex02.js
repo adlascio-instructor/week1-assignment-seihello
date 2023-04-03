@@ -10,7 +10,7 @@ const conditionalSum = function (values, condition) {
 
   // Update the values by filtering
   let checkValue = condition === "even" ? 0 : 1
-  filteredValues = values.filter((num) => {
+  let filteredValues = values.filter((num) => {
     if(num % 2 === checkValue) {
       return true
     }
