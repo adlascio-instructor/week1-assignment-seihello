@@ -7,16 +7,17 @@ Create a function named conditionalSum that will be given an array of numbers an
 */
 
 const conditionalSum = function (values, condition) {
-  // Your code here
-  const odd = function(num) { if(num % 2 == 1) return true }
-  const even = function(num) { if(num % 2 == 0) return true }
 
   // Update the values by filtering
-  if(condition === "odd") values = values.filter(odd)
-  else if(condition === "even") values = values.filter(even)
-  
-  if(values.length > 0) {
-    const sum = values.reduce(function(accumulator, currentValue) {
+  let checkValue = condition === "even" ? 0 : 1
+  filteredValues = values.filter((num) => {
+    if(num % 2 === checkValue) {
+      return true
+    }
+  })
+
+  if(filteredValues.length > 0) {
+    const sum = filteredValues.reduce(function(accumulator, currentValue) {
       return accumulator + currentValue
     })
     return sum
